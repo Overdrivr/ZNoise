@@ -1,6 +1,6 @@
 //
 // ZNoise - C++ Noise and Random Numbers library
-// Copyright (C) 2011-2013 BEGES Rémi (remi.beges@gmail.com)
+// Copyright (C) 2011-2013 BEGES Rémi (remi{dot}beges{at}gmail{dot}com)
 //
 // This library is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -28,8 +28,6 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
-#include <iostream>
-
 template<typename T>
 class Vector3;
 
@@ -38,176 +36,46 @@ template<typename T>
 class Vector3
 {
     public:
+        Vector3();
+        Vector3(T aX, T aY, T aZ);
+        explicit Vector3(const Vector3<T> & v);
+        explicit Vector3(const Vector3<T> & from,const Vector3<T> & to);
+
         T X;
         T Y;
         T Z;
-
-        Vector3()
-        {
-            X = 0;
-            Y = 0;
-            Z = 0;
-        }
-        Vector3(T aX, T aY, T aZ) : X(aX),Y(aY),Z(aZ)
-        {}
-        Vector3(const Vector3<T> & v)
-        {
-            X = v.X;
-            Y = v.Y;
-            Z = v.Z;
-        }
-        Vector3(const Vector3<T> & from,const Vector3<T> & to)
-        {
-            X = to.X - from.X;
-            Y = to.Y - from.Y;
-            Z = to.Z - from.Z;
-        }
-        ~Vector3()
-        {
-
-        }
 
         double length();
         Vector3<T> & normalize();
         Vector3<T> crossProduct(const Vector3<T> & v);
         float dotProduct(const Vector3<T> & v);
 
-        Vector3<T> & operator=  (const Vector3<T> & v);
-        Vector3<T> & operator+= (const Vector3<T> & v);
-        Vector3<T>   operator+  (const Vector3<T> & v);
-        Vector3<T> & operator-= (const Vector3<T> & v);
-        Vector3<T>   operator-  (const Vector3<T> & v);
-        Vector3<T> & operator*= (const double a);
-        Vector3<T>   operator*  (const double a);
-        Vector3<T> & operator/= (const double a);
-        Vector3<T>   operator/  (const double a);
-    private:
 };
 
-
-
+template<typename T>
+Vector3<T>& operator+= (Vector3<T>& u, const Vector3<T> & v);
 
 template<typename T>
-Vector3<T> & Vector3<T>::operator= (const Vector3<T> & v)
-{
-    X = v.X;
-    Y = v.Y;
-    Z = v.Z;
-    return *this;
-}
+Vector3<T>   operator+  (Vector3<T>& u, const Vector3<T> & v);
 
 template<typename T>
-Vector3<T> & Vector3<T>::operator+= (const Vector3<T> & v)
-{
-    X += v.X;
-    Y += v.Y;
-    Z += v.Z;
-    return *this;
-}
+Vector3<T> & operator-= (Vector3<T>& u, const Vector3<T> & v);
 
 template<typename T>
-Vector3<T> Vector3<T>::operator+ (const Vector3<T> & v)
-{
-    Vector3<T> t = *this;
-    t += v;
-    return t;
-}
+Vector3<T>   operator-  (Vector3<T>& u, const Vector3<T> & v);
 
 template<typename T>
-Vector3<T> & Vector3<T>::operator-= (const Vector3<T> & v)
-{
-    X -= v.X;
-    Y -= v.Y;
-    Z -= v.Z;
-    return *this;
-}
+Vector3<T> & operator*= (Vector3<T>& u, const double a);
 
 template<typename T>
-Vector3<T> Vector3<T>::operator- (const Vector3<T> & v)
-{
-    Vector3<T> t = *this;
-    t -= v;
-    return t;
-}
+Vector3<T>   operator*  (Vector3<T>& u, const double a);
 
 template<typename T>
-Vector3<T> & Vector3<T>::operator*= (const double a)
-{
-    X *= a;
-    Y *= a;
-    Z *= a;
-    return *this;
-}
+Vector3<T> & operator/= (Vector3<T>& u, const double a);
 
 template<typename T>
-Vector3<T> Vector3<T>::operator* (const double a)
-{
-    Vector3<T> t = *this;
-    t *= a;
-    return t;
-}
+Vector3<T>   operator/  (Vector3<T>& u, const double a);
 
-template<typename T>
-Vector3<T> & Vector3<T>::operator/= (const double a)
-{
-    X /= a;
-    Y /= a;
-    Z /= a;
-    return *this;
-}
-
-template<typename T>
-Vector3<T> Vector3<T>::operator/ (const double a)
-{
-    Vector3<T> t = *this;
-    t /= a;
-    return t;
-}
-
-template<typename T>
-Vector3<T> Vector3<T>::crossProduct(const Vector3<T> & v)
-{
-    Vector3<T> t;
-    t.X = Y*v.Z - Z*v.Y;
-    t.Y = Z*v.X - X*v.Z;
-    t.Z = X*v.Y - Y*v.X;
-    return t;
-}
-
-template<typename T>
-double Vector3<T>::length()
-{
-    return sqrt( X*X + Y*Y + Z*Z);
-}
-
-template<typename T>
-Vector3<T> & Vector3<T>::normalize()
-{
-    (*this) /= length();
-    return (*this);
-}
-
-template<typename T>
-float Vector3<T>::dotProduct(const Vector3<T> & v)
-{
-    return (X*v.X + Y*v.Y + Z*v.Z);
-}
-
-/*template<typename T>
-std::ostream& operator<< (std::ostream& flux,const Vector3<T>& v)
-{
-    flux<<"("<<v.X<<","<<v.Y<<","<<v.Z<<")";
-    return flux;
-}*/
-
-
-/*----------------        Operateurs    ------------------------------*/
-
-/*template<typename T>
-bool operator==(const Vector3<T>& a, const Vector3<T>& b)
-{
-
-}*/
-
+#include "Vector3.inl"
 
 #endif // VECTOR3_H

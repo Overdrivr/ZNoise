@@ -1,6 +1,6 @@
 //
 // ZNoise - C++ Noise and Random Numbers library
-// Copyright (C) 2011-2013 BEGES Rémi (remi.beges@gmail.com)
+// Copyright (C) 2011-2013 BEGES Rémi (remi{dot}beges{at}gmail{dot}com)
 //
 // This library is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
