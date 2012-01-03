@@ -28,7 +28,6 @@
 #ifndef NOISEGENERATOR_H
 #define NOISEGENERATOR_H
 
-#include "Vector3.h"
 #include "Vector4.h"
 
 #define MAX_OCTAVES 15
