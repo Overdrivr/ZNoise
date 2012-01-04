@@ -50,9 +50,14 @@ class NoiseGenerator
         //Shuffles pseudo-randomly the Permutation table (used by all noise sources and complex noises as well) according to the current seed
         void MixPermutationTable();
 
-        //------  Coherent noises   -----
+        //----------     SIMPLE NOISES    ----------------
 
         //Perlin noise
+        double Get1DPerlinNoiseValue(double x, double res);
+        double Get2DPerlinNoiseValue(double x, double y, double res);
+        //double Get3DPerlinNoiseValue(double x, double y, double z, double res);
+        //double Get4DPerlinNoiseValue(double x, double y, double z, double w, double res);
+
         float Get1DPerlinNoiseValue(float x, float res);
         float Get2DPerlinNoiseValue(float x, float y, float res);
         float Get3DPerlinNoiseValue(float x, float y, float z, float res);
@@ -79,23 +84,25 @@ class NoiseGenerator
         lacunarity : gap between successive frequencies
         octaves : number of frequencies
         */
+        float Get1DFBMNoiseValue(float x, double H, double lacunarity, double octaves, double resolution);
         float Get2DFBMNoiseValue(float x, float y, double H, double lacunarity, double octaves, double resolution);
         float Get3DFBMNoiseValue(float x, float y,float z,double H, double lacunarity, double octaves, double resolution);
         float Get2DHybridMultiFractalNoiseValue(float x, float y,double H, double lacunarity, double octaves, double resolution);
         float Get3DHybridMultiFractalNoiseValue(float x, float y, float z, double H, double lacunarity, double octaves, double resolution);
 
 
+        void DisplayExtremes();
+        float GetMax();
+        float GetMin();
+        ~NoiseGenerator();
+
+    private:
 
         //Probability Density function
         double pdf(double x);
         //Pour tronquer les nombres
         int fastfloor(float n);
-        void DisplayExtremes();
-        float GetMax();
-        float GetMin();
 
-        ~NoiseGenerator();
-    private:
         double pi;
         float max;
         float min;
@@ -127,8 +134,7 @@ class NoiseGenerator
         Vector4<double> IsoOriginDist;
         Vector4<double> H[5];//Les valeurs renvoyées par la fonction Random3D pour chaque sommet
 
-        double SkewCoeff2D;
-        double UnskewCoeff2D;
+
         int ii,jj,kk,ll;
 
         int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9,gi10,gi11,gi12,gi13,gi14,gi15;
@@ -136,22 +142,33 @@ class NoiseGenerator
         float c1,c2,c3,c4,c5,c6;
         int c;
 
+        double SkewCoeff2D;
+        double UnskewCoeff2D;
+
         double SkewCoeff3D;
         double UnskewCoeff3D;
 
         double SkewCoeff4D;
         double UnskewCoeff4D;
 
-        //Perlin Variables
-        float Li1,Li2,Li3,Li4,Li5,Li6,Li7,Li8,Li9,Li10,Li11,Li12,Li13,Li14;//résultats intermédiaires de lissage
+        /// -----      Perlin Variables   -----
         int x0,y0,z0,w0;
-        float s[4],t[4],u[4],v[4]; //Les sommets
-        float Cx, Cy, Cz, Cw;//Les coeffs de lissage
+
+            //Perlin float
+        float Li1,Li2,Li3,Li4,Li5,Li6,Li7,Li8,Li9,Li10,Li11,Li12,Li13,Li14;
+        float s[4],t[4],u[4],v[4];
+        float Cx, Cy, Cz, Cw;
         Vector4<float> temp;
-        float final;
-        float dist;
         float nx,ny,nz,nw;
-        double tmp;
+        float tmp;
+
+            //Perlin double
+        double Lid1,Lid2,Lid3,Lid4,Lid5,Lid6,Lid7,Lid8,Lid9,Lid10,Lid11,Lid12,Lid13,Lid14;
+        double sd[4], td[4], ud[4], vd[4];
+        double Cdx, Cdy, Cdz, Cdw;
+        Vector4<double> tempd;
+        double nxd,nyd,nzd,nwd;
+        double tmpd;
 
         //fBm variables
         double exponent_array[MAX_OCTAVES];

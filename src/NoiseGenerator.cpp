@@ -177,7 +177,39 @@ void NoiseGenerator::MixPermutationTable()
     for(int i(0) ; i < 512; ++i)
         perm[i]=PermutationTemp[i & 255];
 }
+float NoiseGenerator::Get1DFBMNoiseValue(float x, double H, double lacunarity, double octaves, double resolution)
+{
+    double value = 0.0, frequency, remainder;
+    int i;
 
+    if(first)
+    {
+        // precompute and store spectral weights
+        frequency = 1.0;
+        for (int i(0) ; i < MAX_OCTAVES; ++i)
+        {
+            //compute weight for each frequency
+            exponent_array[i] = pow( frequency, -H );
+            frequency *= lacunarity;
+        }
+        first = false;
+    }
+
+
+    // inner loop of spectral construction
+    for (int i(0); i < octaves; ++i)
+    {
+        //value += Get1DSimplexNoiseValue(x,resolution) * exponent_array[i];
+        x *= lacunarity;
+    }
+    remainder = octaves - (int)octaves;
+
+    //Doesn't seem to work
+    if(remainder != 0){}
+        //value += remainder * Get1DSimplexNoiseValue(x,resolution) * exponent_array[(int)octaves-1];
+
+    return value/4.35;
+}
 float NoiseGenerator::Get2DFBMNoiseValue(float x, float y, double H, double lacunarity, double octaves, double resolution)
 {
     double value = 0.0, frequency, remainder;
@@ -197,7 +229,6 @@ float NoiseGenerator::Get2DFBMNoiseValue(float x, float y, double H, double lacu
     }
 
 
-
     // inner loop of spectral construction
     for (int i(0); i < octaves; ++i)
     {
@@ -207,11 +238,11 @@ float NoiseGenerator::Get2DFBMNoiseValue(float x, float y, double H, double lacu
     }
     remainder = octaves - (int)octaves;
 
-    //NE SEMBLE PAS MARCHER, A VERIFIER
+    //Doesn't seem to work
     if(remainder != 0)
         value += remainder * Get2DSimplexNoiseValue(x,y,resolution) * exponent_array[(int)octaves-1];
 
-    return value/1.89;
+    return value/4.35;
 
 }
 float NoiseGenerator::Get3DFBMNoiseValue(float x, float y,float z,double H, double lacunarity, double octaves, double resolution)
@@ -242,7 +273,7 @@ float NoiseGenerator::Get3DFBMNoiseValue(float x, float y,float z,double H, doub
     }
     remainder = octaves - (int)octaves;
 
-    //NE SEMBLE PAS MARCHER, A VERIFIER
+    //Doesn't seem to work
     if(remainder != 0)
         value += remainder * Get3DSimplexNoiseValue(x,y,z,resolution) * exponent_array[(int)octaves-1];
 
@@ -266,33 +297,31 @@ float NoiseGenerator::Get2DHybridMultiFractalNoiseValue(float x, float y,double 
         first = false;
     }
 
-    /* get first octave of function */
+    // get first octave
     result = (Get2DSimplexNoiseValue(x,y,resolution) + offset) * exponent_array[0];
     weight = result;
-    /* increase frequency */
+    // increase frequency
     x *= lacunarity;
     y *= lacunarity;
 
-    /* spectral construction inner loop, where the fractal is built */
+    // spectral construction inner loop
     for (int i(1) ; i < octaves; ++i)
     {
-        /* prevent divergence */
+        // prevent divergence
         if ( weight > 1.0 )
             weight = 1.0;
 
-        /* get next higher frequency */
         signal = ( Get2DSimplexNoiseValue(x,y,resolution) + offset ) * exponent_array[i];
-        /* add it in, weighted by previous freq's local value */
         result += weight * signal;
-        /* update the (monotonically decreasing) weighting value */
-        /* (this is why H must specify a high fractal dimension) */
+        // update the (monotonically decreasing) weighting value
+        // (this is why H must specify a high fractal dimension)
         weight *= signal;
-        /* increase frequency */
+
         x *= lacunarity;
         y *= lacunarity;
 
     }
-    /* take care of remainder in “octaves” */
+    // take care of remainder
     remainder = octaves - (int)octaves;
 
     if(remainder != 0)
@@ -319,33 +348,31 @@ float NoiseGenerator::Get3DHybridMultiFractalNoiseValue(float x, float y, float 
         first = false;
     }
 
-    /* get first octave of function */
+    // get first octave of function
     result = (Get3DSimplexNoiseValue(x,y,z,resolution) + offset) * exponent_array[0];
     weight = result;
-    /* increase frequency */
+    // increase frequency
     x *= lacunarity;
     y *= lacunarity;
 
-    /* spectral construction inner loop, where the fractal is built */
+    // spectral construction inner loop
     for (int i(1) ; i < octaves; ++i)
     {
-        /* prevent divergence */
+        // prevent divergence
         if ( weight > 1.0 )
             weight = 1.0;
 
-        /* get next higher frequency */
         signal = ( Get3DSimplexNoiseValue(x,y,z,resolution) + offset ) * exponent_array[i];
-        /* add it in, weighted by previous freq's local value */
         result += weight * signal;
-        /* update the (monotonically decreasing) weighting value */
-        /* (this is why H must specify a high fractal dimension) */
+        // update the (monotonically decreasing) weighting value
+        // (this is why H must specify a high fractal dimension)
         weight *= signal;
-        /* increase frequency */
+
         x *= lacunarity;
         y *= lacunarity;
 
     }
-    /* take care of remainder in “octaves” */
+    // take care of remainder
     remainder = octaves - (int)octaves;
 
     if(remainder != 0)
@@ -740,7 +767,6 @@ float NoiseGenerator::Get1DPerlinNoiseValue(float x, float res)
 
     return s[0] + Cx*(t[0]-s[0]);
 }
-
 float NoiseGenerator::Get2DPerlinNoiseValue(float x, float y, float res)
 {
     nx = x/res;
@@ -831,7 +857,6 @@ float NoiseGenerator::Get3DPerlinNoiseValue(float x, float y, float z, float res
     temp.Y = ny-(y0+1);
     v[0] = gradient3[gi3][0]*temp.X + gradient3[gi3][1]*temp.Y + gradient3[gi3][2]*temp.Z;
 
-
     //Les valeurs du plan supérieur
     temp.X = nx-x0;
     temp.Y = ny-y0;
@@ -849,7 +874,6 @@ float NoiseGenerator::Get3DPerlinNoiseValue(float x, float y, float z, float res
     temp.X = nx-(x0+1);
     temp.Y = ny-(y0+1);
     v[1] = gradient3[gi7][0]*temp.X + gradient3[gi7][1]*temp.Y + gradient3[gi7][2]*temp.Z;
-
 
     //On procède à un lissage, et on affecte le point à la matrice de pixels
     tmp = nx-x0;
@@ -909,28 +933,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     gi14 = perm[ii     + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32;
     gi15 = perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32;
 
-/*
-    if(nx < 0)
-    {
-        nx = -nx;
-        x0 = (int)(nx);
-    }
-    if(ny < 0)
-    {
-        ny = -ny;
-        y0 = (int)(ny);
-    }
-    if(nz < 0)
-    {
-        nz = -nz;
-        z0 = (int)(nz);
-    }
-    if(nw < 0)
-    {
-        nw = -nw;
-        w0 = (int)(nw);
-    }*/
-
     //Z inférieur, W inférieur
     temp.X = nx-x0;
     temp.Y = ny-y0;
@@ -950,7 +952,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     temp.Y = ny-(y0+1);
     v[0] = gradient4[gi3][0]*temp.X + gradient4[gi3][1]*temp.Y + gradient4[gi3][2]*temp.Z + gradient4[gi3][3]*temp.W;
 
-
     //Z supérieur, W inférieur
     temp.X = nx-x0;
     temp.Y = ny-y0;
@@ -968,7 +969,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     temp.X = nx-(x0+1);
     temp.Y = ny-(y0+1);
     v[1] = gradient4[gi7][0]*temp.X + gradient4[gi7][1]*temp.Y + gradient4[gi7][2]*temp.Z + gradient4[gi7][3]*temp.W;
-
 
     //Z inférieur, W superieur
     temp.X = nx-x0;
@@ -989,7 +989,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     temp.Y = ny-(y0+1);
     v[2] = gradient4[gi11][0]*temp.X + gradient4[gi11][1]*temp.Y + gradient4[gi11][2]*temp.Z + gradient4[gi11][3]*temp.W;
 
-
     //Z supérieur, W superieur
     temp.X = nx-x0;
     temp.Y = ny-y0;
@@ -1007,7 +1006,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     temp.X = nx-(x0+1);
     temp.Y = ny-(y0+1);
     v[3] = gradient4[gi15][0]*temp.X + gradient4[gi15][1]*temp.Y + gradient4[gi15][2]*temp.Z + gradient4[gi15][3]*temp.W;
-
 
     //Li1 à Li8 : Lissage sur x
     tmp = nx-x0;
@@ -1031,7 +1029,6 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     Li11 = Li5 + Cy*(Li6-Li5);
     Li12 = Li7 + Cy*(Li8-Li7);
 
-
     //Li13,Li14 : Lissage sur z
     tmp = nz-z0;
     Cz = tmp * tmp * tmp * (tmp * (tmp * 6 - 15) + 10);
@@ -1042,9 +1039,78 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
     tmp = nw-w0;
     Cw = tmp * tmp * tmp * (tmp * (tmp * 6 - 15) + 10);
 
-    //cout<<Cx<<" , "<<Cy<<" , "<<Cz<<" , "<<Cw<<endl;
-
     return Li13 + Cw*(Li14-Li13);
+}
+double NoiseGenerator::Get1DPerlinNoiseValue(double x, double res)
+{
+    nxd = x/res;
+    x0 = (int)(nxd);
+    ii = x0 & 255;
+
+    gi0 = perm[ii] % 16;
+    gi1 = perm[ii + 1] % 16;
+
+    tempd.X = nxd-x0;
+    tempd.Y = nyd-y0;
+
+    sd[0] = gradient3[gi0][0]*tempd.X;
+
+    tempd.X = nxd-(x0+1);
+
+    td[0] = gradient3[gi1][0]*tempd.X;
+
+    //Lissage
+    tmpd = nxd-x0;
+    Cdx = tmpd * tmpd * tmpd * (tmpd * (tmpd * 6 - 15) + 10);
+
+    return sd[0] + Cx*(td[0]-sd[0]);
+}
+double NoiseGenerator::Get2DPerlinNoiseValue(double x, double y, double res)
+{
+    nxd = x/res;
+    nyd = y/res;
+
+    //On récupère les positions de la grille associée à (x,y)
+    x0 = (int)(nxd);
+    y0 = (int)(nyd);
+
+    ii = x0 & 255;
+    jj = y0 & 255;
+
+    gi0 = perm[ii + perm[jj]] % 16;
+    gi1 = perm[ii + 1 + perm[jj]] % 16;
+    gi2 = perm[ii + perm[jj + 1]] % 16;
+    gi3 = perm[ii + 1 + perm[jj + 1]] % 16;
+
+    //on calcule les valeurs du plan supérieur
+    tempd.X = nxd-x0;
+    tempd.Y = nyd-y0;
+    sd[0] = gradient3[gi0][0]*tempd.X + gradient3[gi0][1]*tempd.Y;
+
+    tempd.X = nxd-(x0+1);
+    tempd.Y = nyd-y0;
+    td[0] = gradient3[gi1][0]*tempd.X + gradient3[gi1][1]*tempd.Y;
+
+    tempd.X = nxd-x0;
+    tempd.Y = nyd-(y0+1);
+    ud[0] = gradient3[gi2][0]*tempd.X + gradient3[gi2][1]*tempd.Y;
+
+    tempd.X = nxd-(x0+1);
+    tempd.Y = nyd-(y0+1);
+    vd[0] = gradient3[gi3][0]*tempd.X + gradient3[gi3][1]*tempd.Y;
+
+
+    //Lissage
+    tmpd = nxd-x0;
+    Cdx = tmpd * tmpd * tmpd * (tmpd * (tmpd * 6 - 15) + 10);
+
+    Lid1 = sd[0] + Cdx*(td[0]-sd[0]);
+    Lid2 = ud[0] + Cdx*(vd[0]-ud[0]);
+
+    tmpd = nyd - y0;
+    Cdy = tmpd * tmpd * tmpd * (tmpd * (tmpd * 6 - 15) + 10);
+
+    return Lid1 + Cdy*(Lid2-Lid1);
 }
 
 //Cell Noise
