@@ -179,60 +179,64 @@ void NoiseGenerator::MixPermutationTable()
 }
 float NoiseGenerator::Get1DFBMNoiseValue(float x, double H, double lacunarity, double octaves, double resolution)
 {
-    double value = 0.0, frequency, remainder;
-    int i;
+    value = 0.0;
 
     if(first)
     {
         // precompute and store spectral weights
-        frequency = 1.0;
+        double frequency = 1.0;
+        sum = 0;
         for (int i(0) ; i < MAX_OCTAVES; ++i)
         {
             //compute weight for each frequency
             exponent_array[i] = pow( frequency, -H );
             frequency *= lacunarity;
+
+            if(i < octaves)
+                sum += exponent_array[i];
         }
         first = false;
     }
 
-
     // inner loop of spectral construction
     for (int i(0); i < octaves; ++i)
     {
-        //value += Get1DSimplexNoiseValue(x,resolution) * exponent_array[i];
+        value += Get1DPerlinNoiseValue(x,resolution) * exponent_array[i];
         x *= lacunarity;
     }
     remainder = octaves - (int)octaves;
 
     //Doesn't seem to work
-    if(remainder != 0){}
-        //value += remainder * Get1DSimplexNoiseValue(x,resolution) * exponent_array[(int)octaves-1];
+    if(remainder != 0)
+        value += remainder * Get1DPerlinNoiseValue(x,resolution) * exponent_array[(int)octaves-1];
 
-    return value/4.35;
+    return value*sum;
 }
 float NoiseGenerator::Get2DFBMNoiseValue(float x, float y, double H, double lacunarity, double octaves, double resolution)
 {
-    double value = 0.0, frequency, remainder;
-    int i;
+    value = 0.0;
 
     if(first)
     {
         // precompute and store spectral weights
-        frequency = 1.0;
+        double frequency = 1.0;
+        sum = 0.0;
         for (int i(0) ; i < MAX_OCTAVES; ++i)
         {
             //compute weight for each frequency
             exponent_array[i] = pow( frequency, -H );
             frequency *= lacunarity;
+
+            if(i < octaves)
+                sum += exponent_array[i];
         }
         first = false;
     }
 
-
     // inner loop of spectral construction
     for (int i(0); i < octaves; ++i)
     {
-        value += Get2DSimplexNoiseValue(x,y,resolution) * exponent_array[i];
+        value += Get2DdPerlinNoiseValue(x,y,resolution) * exponent_array[i];
         x *= lacunarity;
         y *= lacunarity;
     }
@@ -242,23 +246,26 @@ float NoiseGenerator::Get2DFBMNoiseValue(float x, float y, double H, double lacu
     if(remainder != 0)
         value += remainder * Get2DSimplexNoiseValue(x,y,resolution) * exponent_array[(int)octaves-1];
 
-    return value/4.35;
+    return value*sum;
 
 }
 float NoiseGenerator::Get3DFBMNoiseValue(float x, float y,float z,double H, double lacunarity, double octaves, double resolution)
 {
-    double value = 0.0, frequency, remainder;
-    int i;
+    value = 0.0;
 
     if(first)
     {
         // precompute and store spectral weights
-        frequency = 1.0;
+        double frequency = 1.0;
+        sum = 0.0;
         for (int i(0) ; i < MAX_OCTAVES; ++i)
         {
             //compute weight for each frequency
             exponent_array[i] = pow( frequency, -H );
             frequency *= lacunarity;
+
+            if(i < octaves)
+                sum += exponent_array[i];
         }
         first = false;
     }
@@ -277,7 +284,7 @@ float NoiseGenerator::Get3DFBMNoiseValue(float x, float y,float z,double H, doub
     if(remainder != 0)
         value += remainder * Get3DSimplexNoiseValue(x,y,z,resolution) * exponent_array[(int)octaves-1];
 
-    return value;
+    return value*sum;
 }
 float NoiseGenerator::Get2DHybridMultiFractalNoiseValue(float x, float y,double H, double lacunarity, double octaves, double resolution)
 {
@@ -1041,7 +1048,7 @@ float NoiseGenerator::Get4DPerlinNoiseValue(float x, float y, float z, float w, 
 
     return Li13 + Cw*(Li14-Li13);
 }
-double NoiseGenerator::Get1DPerlinNoiseValue(double x, double res)
+double NoiseGenerator::Get1DdPerlinNoiseValue(double x, double res)
 {
     nxd = x/res;
     x0 = (int)(nxd);
@@ -1065,7 +1072,7 @@ double NoiseGenerator::Get1DPerlinNoiseValue(double x, double res)
 
     return sd[0] + Cx*(td[0]-sd[0]);
 }
-double NoiseGenerator::Get2DPerlinNoiseValue(double x, double y, double res)
+double NoiseGenerator::Get2DdPerlinNoiseValue(double x, double y, double res)
 {
     nxd = x/res;
     nyd = y/res;
