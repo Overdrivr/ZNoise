@@ -81,6 +81,13 @@ NoiseGenerator::NoiseGenerator(int seed,double sigma, double mu)
         for(int j(0) ; j < 4 ; ++j)
             lookupTable4D[i][j] = lookupTemp4D[i][j];
 
+    float unit = 1.0/sqrt(2);
+    float grad2Temp[][2] = {{unit,unit},{-unit,unit},{unit,-unit},{-unit,-unit},
+                            {1,0},{-1,0},{0,1},{0,-1}};
+
+    for(int i(0) ; i < 8 ; ++i)
+        for(int j(0) ; j < 2 ; ++j)
+            gradient2[i][j] = grad2Temp[i][j];
 
     //On remplit les tables de gradients
     int grad3Temp[][3] = {
@@ -334,7 +341,7 @@ float NoiseGenerator::Get2DHybridMultiFractalNoiseValue(float x, float y,double 
     if(remainder != 0)
         result += remainder * Get2DSimplexNoiseValue(x,y,resolution) * exponent_array[(int)octaves-1];
 
-    return result/1.89;
+    return result;
 
 }
 float NoiseGenerator::Get3DHybridMultiFractalNoiseValue(float x, float y, float z, double H, double lacunarity, double octaves, double resolution)
@@ -786,27 +793,27 @@ float NoiseGenerator::Get2DPerlinNoiseValue(float x, float y, float res)
     ii = x0 & 255;
     jj = y0 & 255;
 
-    gi0 = perm[ii + perm[jj]] % 16;
-    gi1 = perm[ii + 1 + perm[jj]] % 16;
-    gi2 = perm[ii + perm[jj + 1]] % 16;
-    gi3 = perm[ii + 1 + perm[jj + 1]] % 16;
+    gi0 = perm[ii + perm[jj]] & 7;
+    gi1 = perm[ii + 1 + perm[jj]] & 7;
+    gi2 = perm[ii + perm[jj + 1]] & 7;
+    gi3 = perm[ii + 1 + perm[jj + 1]] & 7;
 
     //on calcule les valeurs du plan supérieur
     temp.X = nx-x0;
     temp.Y = ny-y0;
-    s[0] = gradient3[gi0][0]*temp.X + gradient3[gi0][1]*temp.Y;
+    s[0] = gradient2[gi0][0]*temp.X + gradient2[gi0][1]*temp.Y;
 
     temp.X = nx-(x0+1);
     temp.Y = ny-y0;
-    t[0] = gradient3[gi1][0]*temp.X + gradient3[gi1][1]*temp.Y;
+    t[0] = gradient2[gi1][0]*temp.X + gradient2[gi1][1]*temp.Y;
 
     temp.X = nx-x0;
     temp.Y = ny-(y0+1);
-    u[0] = gradient3[gi2][0]*temp.X + gradient3[gi2][1]*temp.Y;
+    u[0] = gradient2[gi2][0]*temp.X + gradient2[gi2][1]*temp.Y;
 
     temp.X = nx-(x0+1);
     temp.Y = ny-(y0+1);
-    v[0] = gradient3[gi3][0]*temp.X + gradient3[gi3][1]*temp.Y;
+    v[0] = gradient2[gi3][0]*temp.X + gradient2[gi3][1]*temp.Y;
 
 
     //Lissage

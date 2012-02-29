@@ -53,8 +53,8 @@ class NoiseGenerator
         //----------     SIMPLE NOISES    ----------------
 
         //Perlin noise
-        double Get1DPerlinNoiseValue(double x, double res);
-        double Get2DPerlinNoiseValue(double x, double y, double res);
+        double Get1DdPerlinNoiseValue(double x, double res);
+        double Get2DdPerlinNoiseValue(double x, double y, double res);
         //double Get3DPerlinNoiseValue(double x, double y, double z, double res);
         //double Get4DPerlinNoiseValue(double x, double y, double z, double w, double res);
 
@@ -80,7 +80,7 @@ class NoiseGenerator
         //----------     COMPLEX NOISES    ----------------
         /*
         *****  fractionnal Brownian motion noise fBm  *****
-        H : fractal increment
+        H : fractal increment (Hurst parameter)
         lacunarity : gap between successive frequencies
         octaves : number of frequencies
         */
@@ -108,6 +108,7 @@ class NoiseGenerator
         float min;
         int perm[512];
         int PermutationTemp[256];
+        float gradient2[8][2];
         int gradient3[16][3];
         int gradient4[32][4];
         int lookupTable4D[64][4];
@@ -125,7 +126,8 @@ class NoiseGenerator
         double m_sigma;
         double m_mu;
 
-        //Simplex variables
+        ///  -----------------------  Simplex variables  --------------------------------------
+
         double n1, n2, n3, n4, n5; //Contribution des sommets au bruit total
         Vector4<double> A;//Les points de la grille englobant le point
         Vector4<int> Origin;
@@ -151,7 +153,7 @@ class NoiseGenerator
         double SkewCoeff4D;
         double UnskewCoeff4D;
 
-        /// -----      Perlin Variables   -----
+        ///-----------------------  Perlin Variables  -------------------------------------
         int x0,y0,z0,w0;
 
             //Perlin float
@@ -170,9 +172,12 @@ class NoiseGenerator
         double nxd,nyd,nzd,nwd;
         double tmpd;
 
-        //fBm variables
+        ///-----------------  FBM variables  ----------------------------------------
+        double sum;
         double exponent_array[MAX_OCTAVES];
         bool first;
+        double value;
+        double remainder;
 
         float smax;
         float smin;
