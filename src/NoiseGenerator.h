@@ -1,6 +1,6 @@
 //
 // ZNoise - C++ Noise and Random Numbers library
-// Copyright (C) 2011-2013 BEGES Rémi (remi{dot}beges{at}gmail{dot}com)
+// Copyright (C) 2011-2013 BEGES RÃ©mi (remi{dot}beges{at}gmail{dot}com)
 //
 // This library is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -25,162 +25,195 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 
-#ifndef NOISEGENERATOR_H
-#define NOISEGENERATOR_H
+#ifndef NOISEGENERATOR_HPP
+#define NOISEGENERATOR_HPP
 
-#include "Vector4.h"
+template<typename T>
+class Vector4
+{
+    public:
+        T x;
+        T y;
+        T z;
+        T w;
 
-#define MAX_OCTAVES 15
+        Vector4()
+        {
+            x = 0;  y = 0;  z = 0;  w = 0;
+        }
+        Vector4(T X, T Y, T Z, T W) : x(X),y(Y),z(Z),w(W)
+        {}
+        Vector4(const Vector4<T> & v)
+        {
+            x = v.x;    y = v.y;    z = v.z;    w = v.w;
+        }
+        Vector4(const Vector4<T> & from,const Vector4<T> & to)
+        {
+            x = to.x - from.x;
+            y = to.y - from.y;
+            z = to.z - from.z;
+            w = to.w - from.w;
+        }
+        ~Vector4() = default;
+
+        Vector4<T> & operator=  (const Vector4<T> & v);
+        Vector4<T> & operator+= (const Vector4<T> & v);
+        Vector4<T>   operator+  (const Vector4<T> & v);
+        Vector4<T> & operator-= (const Vector4<T> & v);
+        Vector4<T>   operator-  (const Vector4<T> & v);
+};
+
+typedef Vector4<float> Vector4f;
+typedef Vector4<double> Vector4d;
+typedef Vector4<int> Vector4i;
 
 class NoiseGenerator
 {
     public:
-        NoiseGenerator(int seed = 0,double sigma = 1, double mu = 0);
+        NoiseGenerator(int seed = 0);
+        ~NoiseGenerator() = default;
 
-        //Just change the current seed, doesn't update permutation tables, call MixPermutationTable() for that
         void SetNewSeed(int seed);
-        //Return each time called a new pseudo-random number comprised between -2147483648 to 2147483647
-            //Generated numbers follow a uniform law
-            int GetUniformRandomValue();
-            //Generated numbers follow a normal law
-            double GetNormalRandomValue();
-            //Setup the normal law values
-            //If sigma == 0, sigma = 1
-            void SetupNormalLaw(double sigma, double mu);
-        //Shuffles pseudo-randomly the Permutation table (used by all noise sources and complex noises as well) according to the current seed
-        void MixPermutationTable();
+        int GetUniformRandomValue();
+        void ShufflePermutationTable();
 
-        //----------     SIMPLE NOISES    ----------------
+        int fastfloor(float n);
+        int JenkinsHash(int a, int b, int c);
 
-        //Perlin noise
-        double Get1DdPerlinNoiseValue(double x, double res);
-        double Get2DdPerlinNoiseValue(double x, double y, double res);
-        //double Get3DPerlinNoiseValue(double x, double y, double z, double res);
-        //double Get4DPerlinNoiseValue(double x, double y, double z, double w, double res);
+        float Get2DPerlinNoiseValue (float x, float y,                   float res);
+        float Get3DPerlinNoiseValue (float x, float y, float z,          float res);
+        float Get4DPerlinNoiseValue (float x, float y, float z, float w, float res);
 
-        float Get1DPerlinNoiseValue(float x, float res);
-        float Get2DPerlinNoiseValue(float x, float y, float res);
-        float Get3DPerlinNoiseValue(float x, float y, float z, float res);
-        float Get4DPerlinNoiseValue(float x, float y, float z, float w, float res);
+        float Get2DSimplexNoiseValue(float x, float y,                   float res);
+        float Get3DSimplexNoiseValue(float x, float y, float z,          float res);
+        float Get4DSimplexNoiseValue(float x, float y, float z, float w, float res);
 
-        //Simplex noise
-        float Get2DSimplexNoiseValue(float x, float y, float resolution);
-        float Get3DSimplexNoiseValue(float x, float y, float z, float resolution);
-        float Get4DSimplexNoiseValue(float x, float y, float z, float w, float resolution);
+        float Get3DCellNoiseValue(float x, float y, float z,          float res);
 
-        //Cell Noise
-        float Get2DCellNoiseValue(float x, float y, float res);
-        float Get3DCellNoiseValue(float x, float y, float z, float res);
-        float Get4DCellNoiseValue(float x, float y, float z, float w, float res);
+        float Get2DFBMNoiseValue(float x, float y,          float res);
+        float Get3DFBMNoiseValue(float x, float y, float z, float res);
+
+        float Get2DHybridMultiFractalNoiseValue(float x, float y,          float res);
+        float Get3DHybridMultiFractalNoiseValue(float x, float y, float z, float res);
 
 
-        //Worley Noise (?)
+        void SetLacunarity(float lacunarity);
+        void SetHurstParameter(float h);
+        void SetOctavesNumber(float octaves);
+        void RecomputeExponentArray();
 
-
-        //----------     COMPLEX NOISES    ----------------
-        /*
-        *****  fractionnal Brownian motion noise fBm  *****
-        H : fractal increment (Hurst parameter)
-        lacunarity : gap between successive frequencies
-        octaves : number of frequencies
-        */
-        float Get1DFBMNoiseValue(float x, double H, double lacunarity, double octaves, double resolution);
-        float Get2DFBMNoiseValue(float x, float y, double H, double lacunarity, double octaves, double resolution);
-        float Get3DFBMNoiseValue(float x, float y,float z,double H, double lacunarity, double octaves, double resolution);
-        float Get2DHybridMultiFractalNoiseValue(float x, float y,double H, double lacunarity, double octaves, double resolution);
-        float Get3DHybridMultiFractalNoiseValue(float x, float y, float z, double H, double lacunarity, double octaves, double resolution);
-
-
-        void DisplayExtremes();
-        float GetMax();
-        float GetMin();
-        ~NoiseGenerator();
 
     private:
 
-        //Probability Density function
-        double pdf(double x);
-        //Pour tronquer les nombres
-        int fastfloor(float n);
-
-        double pi;
-        float max;
-        float min;
+        ///--------- Common Variables -----------
+        int Ua, Uc, Um;
+        int UcurrentSeed;
+        int Uprevious, Ulast;
+        int ii,jj,kk,ll;
+        int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9,gi10,gi11,gi12,gi13,gi14,gi15;
         int perm[512];
-        int PermutationTemp[256];
+
+        ///--------- Complex Noise Variables ----
+
+        float m_lacunarity;
+        float m_hurst;
+        float m_octaves;
+        float exponent_array[30];
+        float m_sum;
+        bool m_parametersModified;
+
         float gradient2[8][2];
         int gradient3[16][3];
         int gradient4[32][4];
         int lookupTable4D[64][4];
 
-        //multiplicative congruential generator
-        int UcurrentSeed;
-        int Ua,Uc,Um;
-        int Uprevious;
-        int Ulast;
+        ///-------  Simplex variables  -----------
 
-        //normal random number generator
-        double zn;
-        double rectanglesX[128];
-        double rectanglesY[128];
-        double m_sigma;
-        double m_mu;
-
-        ///  -----------------------  Simplex variables  --------------------------------------
-
-        double n1, n2, n3, n4, n5; //Contribution des sommets au bruit total
-        Vector4<double> A;//Les points de la grille englobant le point
-        Vector4<int> Origin;
-        Vector4<double> d1,d2,d3,d4,d5;
-        Vector4<int> off1, off2,off3;//Les offsets des points
-        Vector4<double> IsoOriginDist;
-        Vector4<double> H[5];//Les valeurs renvoyées par la fonction Random3D pour chaque sommet
+        float n1, n2, n3, n4, n5;
+        Vector4f d1,d2,d3,d4,d5,unskewedCubeOrigin,unskewedDistToOrigin;
+        Vector4i off1, off2,off3,skewedCubeOrigin;
 
 
-        int ii,jj,kk,ll;
-
-        int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9,gi10,gi11,gi12,gi13,gi14,gi15;
-        float lenght;
         float c1,c2,c3,c4,c5,c6;
         int c;
 
-        double SkewCoeff2D;
-        double UnskewCoeff2D;
+        float SkewCoeff2D;
+        float UnskewCoeff2D;
 
-        double SkewCoeff3D;
-        double UnskewCoeff3D;
+        float SkewCoeff3D;
+        float UnskewCoeff3D;
 
-        double SkewCoeff4D;
-        double UnskewCoeff4D;
+        float SkewCoeff4D;
+        float UnskewCoeff4D;
 
-        ///-----------------------  Perlin Variables  -------------------------------------
+        float sum;
+
+        ///-------  Perlin Variables  ----------
+
         int x0,y0,z0,w0;
-
-            //Perlin float
         float Li1,Li2,Li3,Li4,Li5,Li6,Li7,Li8,Li9,Li10,Li11,Li12,Li13,Li14;
         float s[4],t[4],u[4],v[4];
         float Cx, Cy, Cz, Cw;
-        Vector4<float> temp;
-        float nx,ny,nz,nw;
+        Vector4f temp;
         float tmp;
 
-            //Perlin double
-        double Lid1,Lid2,Lid3,Lid4,Lid5,Lid6,Lid7,Lid8,Lid9,Lid10,Lid11,Lid12,Lid13,Lid14;
-        double sd[4], td[4], ud[4], vd[4];
-        double Cdx, Cdy, Cdz, Cdw;
-        Vector4<double> tempd;
-        double nxd,nyd,nzd,nwd;
-        double tmpd;
+        ///------  Complex Noise Variables -----
 
-        ///-----------------  FBM variables  ----------------------------------------
-        double sum;
-        double exponent_array[MAX_OCTAVES];
         bool first;
-        double value;
-        double remainder;
-
+        float value;
+        float remainder;
         float smax;
         float smin;
+
+
 };
 
-#endif // NOISEGENERATOR_H
+
+
+template<typename T>
+Vector4<T> & Vector4<T>::operator= (const Vector4<T> & v)
+{
+    x = v.x;
+    y = v.y;
+    z = v.z;
+    w = v.w;
+    return *this;
+}
+
+template<typename T>
+Vector4<T> & Vector4<T>::operator+= (const Vector4<T> & v)
+{
+    x += v.x;
+    y += v.y;
+    z += v.z;
+    w += v.w;
+    return *this;
+}
+
+template<typename T>
+Vector4<T> Vector4<T>::operator+ (const Vector4<T> & v)
+{
+    Vector4<T> t = *this;
+    t += v;
+    return t;
+}
+
+template<typename T>
+Vector4<T> & Vector4<T>::operator-= (const Vector4<T> & v)
+{
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+    w -= v.w;
+    return *this;
+}
+
+template<typename T>
+Vector4<T> Vector4<T>::operator- (const Vector4<T> & v)
+{
+    Vector4<T> t = *this;
+    t -= v;
+    return t;
+}
+
+#endif // NOISEGENERATOR_HPP
