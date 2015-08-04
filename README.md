@@ -33,7 +33,8 @@ Image                          |Image
 To install the library, simply place the ZNoise folder (containing the sources) inside your project. This approach is preferred to avoid the ususal hassle of installing c++ libraries.
 
 # Documentation and exemples
-See the wiki (WIP)
+See the [wiki](https://github.com/Overdrivr/ZNoise/wiki) for detailed information.
+Various topics are covered such as how to install the library, run the exemples, etc.
 
 # Related implementations
 This node library is also implemented in the C++11 game engine called Nazara. It is part of the official Nazara distribution.
