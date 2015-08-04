@@ -29,12 +29,11 @@ These simple noises can also be used as sources on the following fractal noises
 Image                          |Image
 
 
-# Installation
-To install the library, simply place the ZNoise folder (containing the sources) inside your project. This approach is preferred to avoid the ususal hassle of installing c++ libraries.
+# Installation, Documentation and exemples
 
-# Documentation and exemples
-See the [wiki](https://github.com/Overdrivr/ZNoise/wiki) for detailed information.
-Various topics are covered such as how to install the library, run the exemples, etc.
+Installing the library is simply done by placing the /include and /src folders inside your project, but there are a few things to know related to your compiler. See the [wiki](https://github.com/Overdrivr/ZNoise/wiki) for detailed information.
+
+Other topics are covered such as how to run the exemples, advanced use of the algorithms, etc.
 
 # Related implementations
 This node library is also implemented in the C++11 game engine called Nazara. It is part of the official Nazara distribution.
