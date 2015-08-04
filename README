@@ -1,2 +1,0 @@
-IMPORTANT : This repository is not up to date anymore. Implementations are good, but a more advanced and efficient architecture has been develloped and implemented for the Nazara Project (https://github.com/DigitalPulseSoftware/NazaraEngine).
-ZNoise - C++ Noise library" is an open source library under LGPL licence. A convenient tool for procedural generation (terrains,textures,etc). The library contains implementation for various "noise sources" : Perlin,Simplex,FBm,Hybrid multifractal, all available from 1 to 4 dimensions.
