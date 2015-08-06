@@ -10,6 +10,11 @@ Rémi Bèges (remi.beges@gmail.com)
 
 The following table details the implemented noises to date :
 
+
+
+[Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/perlin2d.bmp "Perlin 2d"
+[Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/simplex2d.bmp "Simplex 2d"
+
 Noise   | 2-D | 3-D | 4-D 
 --------|-----|-----|-----
 Perlin  |X    |X    |X    
@@ -20,7 +25,7 @@ To get an idea of the kind of images that can be generated with the algorithms
 
 | Perlin | Simplex | Worley F1 | Worley F2 | Worley F3 | Worley F4
 ---------|---------|-----------|-----------|-----------|----------
-Image    | Image   | Image     | Image     | Image     | Image
+![Perlin image][Perlin2D]    | ![Simplex image][Simplex2D]   | Image     | Image     | Image     | Image
 
 These simple noises can also be used as sources on the following fractal noises
 
