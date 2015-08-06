@@ -7,7 +7,7 @@
 NoiseBase::NoiseBase(unsigned int seed)
 {
     SetSeed(seed);
-	m_scale = 0.01f;
+	m_scale = 0.05f;
 
 	for(unsigned int i(0) ; i < 512; ++i)
         perm[i] = i & 255;

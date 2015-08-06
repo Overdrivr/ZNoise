@@ -9,10 +9,10 @@ using namespace cimg_library;
 
 int main()
 {
-    CImg<unsigned char> image(512,512,1,3,0);
+    CImg<unsigned char> image(128,128,1,3,0);
 
-    // Perlin code here
     Perlin2D perlin2d;
+    perlin2d.Shuffle(10);
 
     for(unsigned int x = 0 ; x < image.width() ; x++)
         for(unsigned int y = 0 ; y < image.height() ; y++)
