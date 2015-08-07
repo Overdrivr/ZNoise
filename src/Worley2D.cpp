@@ -32,11 +32,6 @@ float Worley2D::Get()
     fracty = yc - static_cast<float>(y0);
 
     featurePoints.clear();
-    //Dummy points : FIX ME : Remove them
-    //featurePoints[100.f] = vec2(0.f,0.f);
-    //featurePoints[101.f] = vec2(0.f,0.f);
-    //featurePoints[102.f] = vec2(0.f,0.f);
-    //featurePoints[103.f] = vec2(0.f,0.f);
 
     SquareTest(x0,y0,xc,yc);
 
@@ -94,12 +89,6 @@ float Worley2D::Get()
 
     it = featurePoints.begin();
     std::advance(it,m_function);
-
-    //Remove dummy points
-    featurePoints.erase(--(featurePoints.end()));
-    featurePoints.erase(--(featurePoints.end()));
-    featurePoints.erase(--(featurePoints.end()));
-    featurePoints.erase(--(featurePoints.end()));
 
     return it->first * scale[m_function];
 }
