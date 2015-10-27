@@ -3,7 +3,7 @@
 // For conditions of distribution and use, see LICENSE file
 
 #include <cmath>
-#include "../include/CombinedNoiseBase.hpp"
+#include "CombinedNoiseBase.hpp"
 
 CombinedNoiseBase::CombinedNoiseBase()
 {

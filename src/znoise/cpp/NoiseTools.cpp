@@ -2,7 +2,7 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/NoiseTools.hpp"
+#include "NoiseTools.hpp"
 
 int fastfloor(float n)
 {

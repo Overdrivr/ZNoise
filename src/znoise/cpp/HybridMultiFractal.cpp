@@ -2,7 +2,7 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/HybridMultiFractal.hpp"
+#include "HybridMultiFractal.hpp"
 
 HybridMultiFractal::HybridMultiFractal(NoiseBase& source) : m_source(source)
 {

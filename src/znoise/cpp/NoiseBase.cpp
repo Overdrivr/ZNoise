@@ -2,7 +2,7 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/NoiseBase.hpp"
+#include "NoiseBase.hpp"
 
 NoiseBase::NoiseBase(unsigned int seed)
 {

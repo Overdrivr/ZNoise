@@ -2,8 +2,8 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/Perlin2D.hpp"
-#include "../include/NoiseTools.hpp"
+#include "Perlin2D.hpp"
+#include "NoiseTools.hpp"
 #include <iostream>
 
 Perlin2D::Perlin2D()
