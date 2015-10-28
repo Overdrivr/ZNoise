@@ -80,7 +80,6 @@ void generate_worley(CImg<unsigned char> & image,WorleyFunction worleyFunc)
         for(int y = 0 ; y < image.height() ; y++)
         {
             worley2d.Set(x,y);
-            //std::cout<<"ok";
             float value =  worley2d.Get();
 
             unsigned int greyscale = static_cast<unsigned int>((value + 1.f) / 2.f * 255.f);
