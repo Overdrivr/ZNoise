@@ -19,6 +19,18 @@ model {
             cppCompiler.args "-std=c++11"
         }
     	}
+      cimg(NativeLibrarySpec){
+        binaries.all {
+            cppCompiler.args "-std=gnu++0x"
+        }
+	   }
+     examples(NativeExecutableSpec){
+       binaries.all {
+         cppCompiler.args "-std=c++11"
+         lib library: "cimg"
+         lib library: "znoise"
+       }
+    }
       main(NativeExecutableSpec){
         binaries.all {
           cppCompiler.args "-std=c++11"
