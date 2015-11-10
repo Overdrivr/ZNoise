@@ -4,14 +4,13 @@ ZNoise is a fast and easy-to-use open-source C++ noise library.
 This library is a very useful framework for people who want to generate procedural content such as images, heightmaps, textures, etc.
 
 # Author
-Rémi Bèges 
+Rémi Bèges
+
 [twitter](https://twitter.com/remibgs)
 
 # Features
 
 The following table details the implemented noises to date :
-
-
 
 [Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/perlin2d.bmp "Perlin 2d"
 [Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/simplex2d.bmp "Simplex 2d"
