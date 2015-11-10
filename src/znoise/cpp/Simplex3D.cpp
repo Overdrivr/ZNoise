@@ -2,8 +2,8 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/Simplex3D.hpp"
-#include "../include/NoiseTools.hpp"
+#include "Simplex3D.hpp"
+#include "NoiseTools.hpp"
 
 Simplex3D::Simplex3D()
 {

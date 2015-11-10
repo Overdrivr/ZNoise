@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../common/CImg.h"
-#include "../../include/Perlin2D.hpp"
+#include "CImg.h"
+#include "Perlin2D.hpp"
 
 using namespace std;
 using namespace cimg_library;
@@ -28,5 +28,6 @@ int main()
         }
 
     image.save("perlin2d.bmp");
+    printf("Generated perlin2d.bmp successfully.");
     return 0;
 }

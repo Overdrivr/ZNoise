@@ -1,0 +1,47 @@
+apply plugin: 'cpp'
+
+model {
+    buildTypes {
+        debug
+        release
+    }
+
+    toolChains{
+      gcc(Gcc)
+      {
+
+      }
+    }
+
+    components{
+     znoise(NativeLibrarySpec){
+    		binaries.all {
+            cppCompiler.args "-std=c++11"
+        }
+    	}
+      cimg(NativeLibrarySpec){
+        binaries.all {
+
+        }
+	   }
+     examples(NativeExecutableSpec){
+       binaries.all {
+         cppCompiler.args "-std=gnu++11"
+         linker.args "-lgdi32"
+         lib library: "cimg"
+         lib library: "znoise"
+       }
+    }
+      main(NativeExecutableSpec){
+        binaries.all {
+          cppCompiler.args "-std=c++11"
+          lib library: "znoise"
+        }
+	   }
+   }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}

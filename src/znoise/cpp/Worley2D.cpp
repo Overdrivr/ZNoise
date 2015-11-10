@@ -2,8 +2,8 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#include "../include/Worley2D.hpp"
-#include "../include/NoiseTools.hpp"
+#include "Worley2D.hpp"
+#include "NoiseTools.hpp"
 
 Worley2D::Worley2D(WorleyFunction function)
 {
