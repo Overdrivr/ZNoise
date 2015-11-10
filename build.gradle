@@ -21,12 +21,13 @@ model {
     	}
       cimg(NativeLibrarySpec){
         binaries.all {
-            cppCompiler.args "-std=gnu++0x"
+
         }
 	   }
      examples(NativeExecutableSpec){
        binaries.all {
-         cppCompiler.args "-std=c++11"
+         cppCompiler.args "-std=gnu++11"
+         linker.args "-lgdi32"
          lib library: "cimg"
          lib library: "znoise"
        }
