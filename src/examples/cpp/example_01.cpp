@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../common/CImg.h"
-#include "../../include/Perlin2D.hpp"
+#include "CImg.h"
+#include "Perlin2D.hpp"
 
 using namespace std;
 using namespace cimg_library;
