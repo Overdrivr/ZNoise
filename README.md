@@ -47,12 +47,12 @@ On Windows, also add the /bin subfolder (where you can find gcc.exe) to the PATH
 Then, simply run the following command in the root /Znoise folder:
 
 ```
-gradle build
+gradlew build
 ```
 
 # Run the examples
 ```
-gradle installDebugExamplesExecutable
+gradlew installDebugExamplesExecutable
 ```
 Run the first example
 ```
