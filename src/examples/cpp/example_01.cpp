@@ -28,5 +28,6 @@ int main()
         }
 
     image.save("perlin2d.bmp");
+    printf("Generated perlin2d.bmp successfully.");
     return 0;
 }
