@@ -10,11 +10,9 @@ Rémi Bèges (remi.beges@gmail.com)
 
 The following table details the implemented noises to date :
 
-
-
-[Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/perlin2d.bmp "Perlin 2d"
-[Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/simplex2d.bmp "Simplex 2d"
-[Worley2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/worley2d.bmp "Worley 2d"
+[Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/perlin2d.bmp "Perlin 2d"
+[Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex2d.bmp "Simplex 2d"
+[Worley2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/worley2d.bmp "Worley 2d"
 
 Noise   | 2-D | 3-D | 4-D
 --------|-----|-----|-----
