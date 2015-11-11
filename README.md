@@ -1,7 +1,7 @@
 # ZNoise
 ZNoise is a fast and easy-to-use open-source C++ noise library.
 
-This library is a very useful framework for people who want to generate procedural content such as images, heightmaps, textures, etc.
+This library is a very useful framework for people who want to generate procedural images, heightmaps and textures.
 
 # Author
 Rémi Bèges (remi.beges@gmail.com)
