@@ -50,11 +50,11 @@ gradlew build
 
 # Run the examples
 ```
-gradlew installDebugExamplesExecutable
+gradlew installDebugMainExecutable
 ```
 Run the first example
 ```
-\build\install\examplesExecutable\debug\examples.bat
+\build\install\mainExecutable\debug\main.bat
 ```
 It will generate perlin noise in two dimensions and output the result to \build\install\examplesExecutable\debug\perlin2d.bmp
 
