@@ -24,7 +24,7 @@ model {
 
         }
 	   }
-     examples(NativeExecutableSpec){
+     examples(NativeLibrarySpec){
        binaries.all {
          cppCompiler.args "-std=gnu++11"
          linker.args "-lgdi32"
@@ -34,7 +34,10 @@ model {
     }
       main(NativeExecutableSpec){
         binaries.all {
-          cppCompiler.args "-std=c++11"
+          cppCompiler.args "-std=gnu++11"
+          linker.args "-lgdi32"
+          lib library: "cimg"
+          lib library: "examples"
           lib library: "znoise"
         }
 	   }
