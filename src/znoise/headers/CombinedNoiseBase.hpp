@@ -5,7 +5,7 @@
 #ifndef COMBINEDNOISEBASE_HPP
 #define COMBINEDNOISEBASE_HPP
 
-#include "NoiseBase.hpp""
+#include "NoiseBase.hpp"
 #include <array>
 
 class CombinedNoiseBase : public NoiseBase

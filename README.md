@@ -1,7 +1,7 @@
 # ZNoise
 ZNoise is a fast and easy-to-use open-source C++ noise library.
 
-This library is a very useful framework for people who want to generate procedural content such as images, heightmaps, textures, etc.
+This library is a very useful framework for people who want to generate procedural images, heightmaps and textures.
 
 # Author
 Rémi Bèges
@@ -12,9 +12,9 @@ Rémi Bèges
 
 The following table details the implemented noises to date :
 
-[Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/perlin2d.bmp "Perlin 2d"
-[Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/simplex2d.bmp "Simplex 2d"
-[Worley2D]: https://github.com/Overdrivr/ZNoise/blob/master/tests/generate_all_noises/worley2d.bmp "Worley 2d"
+[Perlin2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/perlin2d.bmp "Perlin 2d"
+[Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex2d.bmp "Simplex 2d"
+[Worley2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/worley2d.bmp "Worley 2d"
 
 Noise   | 2-D | 3-D | 4-D
 --------|-----|-----|-----
@@ -47,16 +47,16 @@ On Windows, also add the /bin subfolder (where you can find gcc.exe) to the PATH
 Then, simply run the following command in the root /Znoise folder:
 
 ```
-gradle build
+gradlew build
 ```
 
 # Run the examples
 ```
-gradle installDebugExamplesExecutable
+gradlew installDebugMainExecutable
 ```
 Run the first example
 ```
-\build\install\examplesExecutable\debug\examples.bat
+\build\install\mainExecutable\debug\main.bat
 ```
 It will generate perlin noise in two dimensions and output the result to \build\install\examplesExecutable\debug\perlin2d.bmp
 
