@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "Worley2D.hpp"
 #include "include_all.hpp"
 
-void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunction worleyFunc)
+void generate_worley(cimg_library::CImg<unsigned char> & image, WorleyFunction worleyFunc)
 {
     /* Generate Simplex 2D */
     Worley2D worley2d(worleyFunc);
@@ -21,6 +23,8 @@ void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunctio
             image(x,y,2) = greyscale;
         }
 
-    image.save("worley2d.bmp");
-    std::cout<<"Saved worley2d.bmp"<<std::endl;
+    std::ostringstream path;
+    path << "worley2d_F" << worleyFunc + 1 << ".bmp";
+    image.save(path.str().c_str());
+    std::cout<<"Saved "<< path.str()<<std::endl;
 }
