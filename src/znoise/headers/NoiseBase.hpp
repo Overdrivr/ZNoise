@@ -13,7 +13,7 @@ class NoiseBase
         NoiseBase(unsigned int seed = 0);
         ~NoiseBase() = default;
 
-        virtual float Get() = 0;
+        virtual float Get(std::initializer_list<float> coordinates, float scale) const = 0;
 
         float GetScale();
 
