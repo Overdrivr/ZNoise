@@ -23,9 +23,9 @@ class Perlin : public NoiseBase
       float _4D(std::initializer_list<float> coordinates, float scale) const;
 
     private:
-      //const float gradient2[8][2];
-      //const float gradient3[8][2];
-      //const float gradient4[8][2];
+      const float gradient2[8][2];
+      const float gradient3[16][3];
+      const float gradient4[32][4];
 };
 
 #endif // PERLIN_HPP
