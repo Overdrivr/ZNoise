@@ -5,7 +5,7 @@
 void generate_simplex(cimg_library::CImg<unsigned char> & image)
 {
     /* Generate Simplex 2D */
-    Simplex2D simplex2d;
+    /*Simplex2D simplex2d;
     simplex2d.Shuffle(10);
 
     for(int x = 0 ; x < image.width() ; x++)
@@ -22,5 +22,5 @@ void generate_simplex(cimg_library::CImg<unsigned char> & image)
         }
 
     image.save("simplex2d.bmp");
-    std::cout<<"Saved simplex2d.bmp"<<std::endl;
+    std::cout<<"Saved simplex2d.bmp"<<std::endl;*/
 }
