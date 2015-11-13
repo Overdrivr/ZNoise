@@ -5,7 +5,7 @@
 void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunction worleyFunc)
 {
     /* Generate Simplex 2D */
-    Worley2D worley2d(worleyFunc);
+    /*Worley2D worley2d(worleyFunc);
     worley2d.Shuffle(10);
 
     for(int x = 0 ; x < image.width() ; x++)
@@ -22,5 +22,5 @@ void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunctio
         }
 
     image.save("worley2d.bmp");
-    std::cout<<"Saved worley2d.bmp"<<std::endl;
+    std::cout<<"Saved worley2d.bmp"<<std::endl;*/
 }
