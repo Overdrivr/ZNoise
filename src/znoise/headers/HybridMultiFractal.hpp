@@ -5,23 +5,22 @@
 #ifndef HYBRIDMULTIFRACTAL_HPP
 #define HYBRIDMULTIFRACTAL_HPP
 
-#include "CombinedNoiseBase.hpp"
-#include "Enums.hpp"
+#include "MixerBase.hpp"
 
-class HybridMultiFractal : public CombinedNoiseBase
+class HybridMultiFractal : public MixerBase
 {
     public:
-        HybridMultiFractal(NoiseBase& source);
+        HybridMultiFractal(const NoiseBase & source);
         HybridMultiFractal(const HybridMultiFractal&) = delete;
         ~HybridMultiFractal() = default;
 
-        float Get();
+        float Get(std::initializer_list<float> coordinates, float scale) const;
 
         HybridMultiFractal & operator=(const HybridMultiFractal&) = delete;
 
     protected:
     private:
-        NoiseBase& m_source;
+        const NoiseBase & m_source;
         float m_value;
         float m_remainder;
         float m_offset;
@@ -30,4 +29,3 @@ class HybridMultiFractal : public CombinedNoiseBase
 };
 
 #endif // HYBRIDMULTIFRACTAL_HPP
-
