@@ -23,6 +23,6 @@ void generate_fbm(cimg_library::CImg<unsigned char> & image)
             image(x,y,2) = greyscale;
         }
 
-    image.save("fbm2d.bmp");
-    std::cout<<"Saved fbm2d.bmp"<<std::endl;
+    image.save("fbm.bmp");
+    std::cout<<"Saved fbm.bmp"<<std::endl;
 }
