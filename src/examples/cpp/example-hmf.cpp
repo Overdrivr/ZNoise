@@ -10,6 +10,7 @@ void generate_hmf(cimg_library::CImg<unsigned char> & image)
     simplex.Shuffle(10);
 
     HybridMultiFractal hmf(simplex);
+    hmf.SetParameters(1.2f,5.f,5.f);
 
     for(int x = 0 ; x < image.width() ; x++)
         for(int y = 0 ; y < image.height() ; y++)
