@@ -5,28 +5,24 @@
 #include "CombinedNoiseBase.hpp"
 #include "FBM.hpp"
 
-FBM::FBM(NoiseBase& source): m_source(source)
+FBM::FBM(const NoiseBase & source): m_source(source)
 {
 }
 
-float FBM::Get()
+float FBM::Get(std::initializer_list<float> coordinates, float scale) const
 {
-    m_value = 0.0;
+    float value = 0.0;
 
-    float initialScale = m_source.GetScale();
-
-    for (int i(0); i < m_octaves; ++i)
+    for(int i(0); i < m_octaves; ++i)
     {
-        m_value += m_source.Get() * m_exponent_array[i];
-        m_scale *= m_lacunarity;
-        m_source.SetScale(m_scale);
+        value += m_source.Get(coordinates,scale) * m_exponent_array.at(i);
+        scale *= m_lacunarity;
     }
-    m_remainder = m_octaves - static_cast<int>(m_octaves);
 
-    if(std::fabs(m_remainder) > 0.01f)
-      m_value += m_remainder * m_source.Get() * m_exponent_array[static_cast<int>(m_octaves-1)];
+    float remainder = m_octaves - static_cast<int>(m_octaves);
 
-    m_source.SetScale(initialScale);
+    if(std::fabs(remainder) > 0.01f)
+      value += remainder * m_source.Get(coordinates,scale) * m_exponent_array.at(static_cast<int>(m_octaves-1));
 
-    return m_value/m_sum;
+    return value / m_sum;
 }
