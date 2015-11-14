@@ -3,9 +3,9 @@
 // For conditions of distribution and use, see LICENSE file
 
 #include <cmath>
-#include "CombinedNoiseBase.hpp"
+#include "MixerBase.hpp"
 
-CombinedNoiseBase::CombinedNoiseBase()
+MixerBase::MixerBase()
 {
     m_lacunarity = 5.0f;
     m_hurst = 1.2f;
@@ -14,23 +14,23 @@ CombinedNoiseBase::CombinedNoiseBase()
     _recompute();
 }
 
-float CombinedNoiseBase::GetLacunarity() const
+float MixerBase::GetLacunarity() const
 {
 
     return m_lacunarity;
 }
 
-float CombinedNoiseBase::GetHurstParameter() const
+float MixerBase::GetHurstParameter() const
 {
     return m_hurst;
 }
 
-float CombinedNoiseBase::GetOctaveNumber() const
+float MixerBase::GetOctaveNumber() const
 {
     return m_octaves;
 }
 
-void CombinedNoiseBase::SetParameters(float hurst, float lacunarity, float octaves)
+void MixerBase::SetParameters(float hurst, float lacunarity, float octaves)
 {
     m_lacunarity = lacunarity;
     m_hurst = hurst;
@@ -39,7 +39,7 @@ void CombinedNoiseBase::SetParameters(float hurst, float lacunarity, float octav
     _recompute();
 }
 
-void CombinedNoiseBase::_recompute()
+void MixerBase::_recompute()
 {
     float frequency = 1.0;
     m_sum = 0.f;

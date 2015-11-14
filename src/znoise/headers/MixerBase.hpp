@@ -2,17 +2,17 @@
 // This file is part of ZNoise - a C++ noise library
 // For conditions of distribution and use, see LICENSE file
 
-#ifndef COMBINEDNOISEBASE_HPP
-#define COMBINEDNOISEBASE_HPP
+#ifndef MIXERBASE_HPP
+#define MIXERBASE_HPP
 
 #include "NoiseBase.hpp"
 #include <array>
 
-class CombinedNoiseBase : public NoiseBase
+class MixerBase
 {
     public:
-        CombinedNoiseBase();
-        ~CombinedNoiseBase() = default;
+        MixerBase();
+        ~MixerBase() = default;
 
         float GetHurstParameter() const;
         float GetLacunarity() const;
@@ -28,4 +28,4 @@ class CombinedNoiseBase : public NoiseBase
         float m_sum;
 };
 
-#endif // COMBINEDNOISEBASE_HPP
+#endif // MIXERBASE_HPP
