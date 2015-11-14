@@ -46,9 +46,9 @@ The following table details the implemented noises to date :
 
 Noise     | 2-D                       | 3-D (2D slice)           | 4-D (2D slice)
 ----------|---------------------------|--------------------------|-----
-Perlin    |![Perlin 2D][Perlin2D]     |![Perlin 3D][Perlin3D]    |![Perlin 4D][Perlin4D]    
-Simplex   |![Simplex 2D][Simplex2D]   |![Simplex 3D][Simplex3D]  |![Simplex 4D][Simplex4D]   
-Worley F1 |![Worley F1][Simplex4D]    |_                         |_
+Perlin    |![Perlin2D][Perlin2D]      |![Perlin3D][Perlin3D]     |![Perlin4D][Perlin4D]    
+Simplex   |![Simplex2D][Simplex2D]    |![Simplex3D][Simplex3D]   |![Simplex4D][Simplex4D]   
+Worley F1 |![Worley2DF1][Worley2DF1]  |_                         |_
 Worley F2 |_                          |_                         |_
 Worley F3 |_                          |_                         |_
 Worley F4 |_                          |_                         |_
@@ -86,7 +86,7 @@ Hurst coefficient controls relates to the weight of each layer in the final blen
 #### Fractal Brownian Motion (FBM) - 5 octaves
                |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 1.2f   |![FBM2D][FBM 2D]           |_                         |_    
+hurst = 1.2f   |![FBM2D][FBM2D]           |_                         |_    
 hurst = 1.5f   |_                          |_                         |_  
 hurst = 1.8f   |_                          |_                         |_
 
@@ -94,7 +94,7 @@ hurst = 1.8f   |_                          |_                         |_
 #### Hybrid Multi Fractal - 5 octaves
                |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 1.2f   |![HMF2D][HMF 2D]           |_                         |_    
+hurst = 1.2f   |![HMF2D][HMF2D]           |_                         |_    
 hurst = 1.5f   |_                          |_                         |_  
 hurst = 1.8f   |_                          |_                         |_
 
