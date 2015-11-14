@@ -5,10 +5,10 @@
 #ifndef FBM_HPP
 #define FBM_HPP
 
-#include "CombinedNoiseBase.hpp"
+#include "MixerBase.hpp"
 #include "Enums.hpp"
 
-class FBM : public CombinedNoiseBase
+class FBM : public MixerBase
 {
     public:
         FBM(const NoiseBase & source);
