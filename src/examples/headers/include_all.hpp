@@ -8,6 +8,8 @@ void generate_perlin(cimg_library::CImg<unsigned char> & image);
 void generate_perlin_3dslice(cimg_library::CImg<unsigned char> & image);
 void generate_perlin_4dslice(cimg_library::CImg<unsigned char> & image);
 void generate_simplex(cimg_library::CImg<unsigned char> & image);
+void generate_simplex_3dslice(cimg_library::CImg<unsigned char> & image);
+void generate_simplex_4dslice(cimg_library::CImg<unsigned char> & image);
 void generate_worley(cimg_library::CImg<unsigned char> & image,WorleyFunction worleyFunc);
 
 #endif
