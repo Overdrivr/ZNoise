@@ -5,25 +5,23 @@
 #ifndef FBM_HPP
 #define FBM_HPP
 
-#include "CombinedNoiseBase.hpp"
+#include "MixerBase.hpp"
 #include "Enums.hpp"
 
-class FBM : public CombinedNoiseBase
+class FBM : public MixerBase
 {
     public:
-        FBM(NoiseBase& source);
+        FBM(const NoiseBase & source);
         FBM(const FBM&) = delete;
         ~FBM() = default;
 
-        float Get();
+        float Get(std::initializer_list<float> coordinates, float scale) const;
 
         FBM & operator=(const FBM&) = delete;
 
     protected:
     private:
-        NoiseBase& m_source;
-        float m_value;
-        float m_remainder;
+        const NoiseBase & m_source;
 };
 
 #endif // FBM_HPP

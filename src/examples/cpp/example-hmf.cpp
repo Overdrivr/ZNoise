@@ -1,18 +1,20 @@
 #include <iostream>
-#include "Worley2D.hpp"
+#include "Simplex.hpp"
+#include "HybridMultiFractal.hpp"
 #include "include_all.hpp"
 
-void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunction worleyFunc)
+void generate_hmf(cimg_library::CImg<unsigned char> & image)
 {
-    /* Generate Simplex 2D */
-    Worley2D worley2d(worleyFunc);
-    worley2d.Shuffle(10);
+    /* Use simplex as source */
+    Simplex simplex;
+    simplex.Shuffle(10);
+
+    HybridMultiFractal hmf(simplex);
 
     for(int x = 0 ; x < image.width() ; x++)
         for(int y = 0 ; y < image.height() ; y++)
         {
-            worley2d.Set(x,y);
-            float value =  worley2d.Get();
+            float value =  hmf.Get({x , y},0.01f);
 
             unsigned int greyscale = static_cast<unsigned int>((value + 1.f) / 2.f * 255.f);
 
@@ -21,6 +23,6 @@ void generate_worley_F1(cimg_library::CImg<unsigned char> & image, WorleyFunctio
             image(x,y,2) = greyscale;
         }
 
-    image.save("worley2d.bmp");
-    std::cout<<"Saved worley2d.bmp"<<std::endl;
+    image.save("hybridmultifractal.bmp");
+    std::cout<<"Saved hmf.bmp"<<std::endl;
 }
