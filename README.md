@@ -12,9 +12,9 @@ This value is not random, noise algorithms are always deterministic.
 In other words, calling the function multiple times for the same point will always return the same value.
 However, computing the noise for different coordinates will yield different densities.
 
-# Noises
-## Usage
-```
+## Noises
+### Usage
+```c
 Perlin perlin;
 
 for(int x = 0 ; x < image.width() ; x++)
@@ -30,7 +30,7 @@ for(int x = 0 ; x < image.width() ; x++)
     }
 
 ```
-# List
+### List of supported algorithms
 
 The following table details the implemented noises to date :
 
@@ -52,9 +52,9 @@ Worley F3 |_                          |_                         |_
 Worley F4 |_                          |_                         |_
 Square    |_                          |_                         |_
 
-# Mixers
-## Usage
-```
+## Mixers
+### Usage
+```c
 // Use Perlin as mixer source
 Perlin perlin;
 // Mixer
@@ -69,7 +69,7 @@ for(int x = 0 ; x < image.width() ; x++)
 
 ```
 
-## List
+### List of supported mixers
 
 Multiple noise layers can be assembled automatically using Mixers.
 Three parameters are available to tune the noise output :
@@ -81,7 +81,7 @@ The amount of octaves is simply the total number of noise layers blended togethe
 Lacunarity controls the scale ratio between two successive layers.
 Hurst coefficient controls relates to the weight of each layer in the final blended image.
 
-### Fractal Brownian Motion (FBM) - 5 octaves
+#### Fractal Brownian Motion (FBM) - 5 octaves
                |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
 ---------------|---------------------------|--------------------------|-----------------------
 hurst = 1.2f   |![FBM2D][FBM 2D]           |_                         |_    
@@ -89,14 +89,14 @@ hurst = 1.5f   |_                          |_                         |_
 hurst = 1.8f   |_                          |_                         |_
 
 
-### Hybrid Multi Fractal - 5 octaves
+#### Hybrid Multi Fractal - 5 octaves
                |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
 ---------------|---------------------------|--------------------------|-----------------------
 hurst = 1.2f   |![HMF2D][HMF 2D]           |_                         |_    
 hurst = 1.5f   |_                          |_                         |_  
 hurst = 1.8f   |_                          |_                         |_
 
-# Build the library
+## Build the library
 
 Znoise uses the [Gradle](http://gradle.org/) build system, but you don't need to install it (Actually, for now you do. Changing that soon).
 
@@ -110,7 +110,7 @@ Then, simply run the following command in the root /Znoise folder:
 gradlew build
 ```
 
-# Build the examples
+## Build the examples
 ```
 gradlew installDebugMainExecutable
 ```
@@ -120,7 +120,5 @@ Run the examples
 ```
 This will generate all the images in this readme. Images will be found in \build\install\examplesExecutable\debug\
 
-# Related implementations
-This node library is also implemented in the C++11 game engine called Nazara. It is part of the official Nazara distribution.
-
-[https://github.com/DigitalPulseSoftware/NazaraEngine](https://github.com/DigitalPulseSoftware/NazaraEngine)
+## Related implementation
+ZNoise has at some point been developed for the [https://github.com/DigitalPulseSoftware/NazaraEngine](NazaraEngine) C++11 game engine.
