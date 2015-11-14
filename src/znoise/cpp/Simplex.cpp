@@ -187,16 +187,14 @@ float Simplex::_3D(std::initializer_list<float> coordinates, float scale) const
     skewedCubeOriginy = fastfloor(yc + sum);
     skewedCubeOriginz = fastfloor(zc + sum);
 
-    std::cout<< sum << "," << skewedCubeOriginx << "," << skewedCubeOriginy << "," << skewedCubeOriginz << std::endl;
-
     sum = (skewedCubeOriginx + skewedCubeOriginy + skewedCubeOriginz) * UnskewCoeff3D;
     unskewedCubeOriginx = skewedCubeOriginx - sum;
     unskewedCubeOriginy = skewedCubeOriginy - sum;
     unskewedCubeOriginz = skewedCubeOriginz - sum;
 
-    unskewedDistToOriginx = x - unskewedCubeOriginx;
-    unskewedDistToOriginy = y - unskewedCubeOriginy;
-    unskewedDistToOriginz = z - unskewedCubeOriginz;
+    unskewedDistToOriginx = xc - unskewedCubeOriginx;
+    unskewedDistToOriginy = yc - unskewedCubeOriginy;
+    unskewedDistToOriginz = zc - unskewedCubeOriginz;
 
     if(unskewedDistToOriginx >= unskewedDistToOriginy)
     {
@@ -360,10 +358,10 @@ float Simplex::_4D(std::initializer_list<float> coordinates, float scale) const
     unskewedCubeOriginz = skewedCubeOriginz - sum;
     unskewedCubeOriginw = skewedCubeOriginw - sum;
 
-    unskewedDistToOriginx = x - unskewedCubeOriginx;
-    unskewedDistToOriginy = y - unskewedCubeOriginy;
-    unskewedDistToOriginz = z - unskewedCubeOriginz;
-    unskewedDistToOriginw = w - unskewedCubeOriginw;
+    unskewedDistToOriginx = xc - unskewedCubeOriginx;
+    unskewedDistToOriginy = yc - unskewedCubeOriginy;
+    unskewedDistToOriginz = zc - unskewedCubeOriginz;
+    unskewedDistToOriginw = wc - unskewedCubeOriginw;
 
     c1 = (unskewedDistToOriginx > unskewedDistToOriginy) ? 32 : 0;
     c2 = (unskewedDistToOriginx > unskewedDistToOriginz) ? 16 : 0;
