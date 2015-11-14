@@ -20,6 +20,7 @@ class CombinedNoiseBase : public NoiseBase
         void SetParameters(float hurst, float lacunarity, float octaves);
 
     protected:
+        void _recompute();
         float m_lacunarity;
         float m_hurst;
         float m_octaves;

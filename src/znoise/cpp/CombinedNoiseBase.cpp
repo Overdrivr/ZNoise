@@ -10,6 +10,8 @@ CombinedNoiseBase::CombinedNoiseBase()
     m_lacunarity = 5.0f;
     m_hurst = 1.2f;
     m_octaves = 3.0f;
+
+    _recompute();
 }
 
 float CombinedNoiseBase::GetLacunarity() const
@@ -34,15 +36,19 @@ void CombinedNoiseBase::SetParameters(float hurst, float lacunarity, float octav
     m_hurst = hurst;
     m_octaves = octaves;
 
+    _recompute();
+}
+
+void CombinedNoiseBase::_recompute()
+{
     float frequency = 1.0;
     m_sum = 0.f;
+    m_exponent_array.clear();
+
     for (int i(0) ; i < static_cast<int>(m_octaves) ; ++i)
     {
-
-        m_exponent_array[i] = std::pow( frequency, -m_hurst );
+        m_exponent_array.push_back(std::pow( frequency, -m_hurst ));
         frequency *= m_lacunarity;
-
-        m_sum += m_exponent_array[i];
-
+        m_sum += m_exponent_array.at(i);
     }
 }
