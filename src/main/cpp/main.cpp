@@ -21,5 +21,8 @@ int main()
     // Example 3 - See scr/examples/cpp/example-fbm.cpp
     generate_fbm(output);
 
+    // Example 4 - See scr/examples/cpp/example-fbm.cpp
+    generate_hmf(output);
+    
     return 0;
 }
