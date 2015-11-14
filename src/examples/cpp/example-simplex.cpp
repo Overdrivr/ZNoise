@@ -34,7 +34,7 @@ void generate_simplex_3dslice(cimg_library::CImg<unsigned char> & image)
         for(int y = 0 ; y < image.height() ; y++)
         {
             float value =  simplex.Get({x,y,1.f},0.01f);
-            std::cout << value << std::endl;
+            
             unsigned int greyscale = static_cast<unsigned int>((value + 1.f) / 2.f * 255.f);
 
             image(x,y,0) = greyscale;
