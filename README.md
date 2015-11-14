@@ -3,7 +3,7 @@ ZNoise is a fast and easy-to-use open-source C++ noise library.
 
 This library is a very useful framework for people who want to generate procedural images, heightmaps and textures.
 
-Author : Rémi Bèges [twitter](https://twitter.com/remibgs)
+Author : Rémi Bèges ([twitter](https://twitter.com/remibgs))
 
 ## Noise algorithms
 
@@ -38,6 +38,8 @@ The following table details the implemented noises to date :
 [Perlin3D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/perlin3d.bmp "Perlin 3d"
 [Perlin4D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/perlin4d.bmp "Perlin 4d"
 [Simplex2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex2d.bmp "Simplex 2d"
+[Simplex3D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex3d.bmp "Simplex 3d"
+[Simplex4D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex4d.bmp "Simplex 4d"
 [Worley2DF1]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/worley2d.bmp "Worley 2d"
 [FBM2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm.bmp "FBM 2d"
 [HMF2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal.bmp "HMF 2d"
@@ -98,13 +100,11 @@ hurst = 1.8f   |_                          |_                         |_
 
 ## Build the library
 
-Znoise uses the [Gradle](http://gradle.org/) build system, but you don't need to install it (Actually, for now you do. Changing that soon).
+Znoise uses the [Gradle](http://gradle.org/) build system. As a user,  you don't need to install gradle. All you need is a gcc C++11 compiler ([MinGW](http://www.mingw.org/) or [TDM-GCC](http://tdm-gcc.tdragon.net/) for instance).
 
-All you need is a gcc C++11 compiler ([MinGW](http://www.mingw.org/) or [TDM-GCC](http://tdm-gcc.tdragon.net/) for instance).
+On Windows, you also need to add the /bin subfolder (where you can find gcc.exe) to the PATH.
 
-On Windows, also add the /bin subfolder (where you can find gcc.exe) to the PATH.
-
-Then, simply run the following command in the root /Znoise folder:
+Then, run the following command in the root /Znoise folder:
 
 ```
 gradlew build
