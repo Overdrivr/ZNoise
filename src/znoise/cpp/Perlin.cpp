@@ -57,15 +57,15 @@ float Perlin::Get(std::initializer_list<float> coordinates, float scale) const
 
 float Perlin::_2D(std::initializer_list<float> coordinates, float scale) const
 {
-    thread_local float xc, yc;
-    thread_local int x0, y0;
-    thread_local int gi0,gi1,gi2,gi3;
-    thread_local int ii, jj;
+    float xc, yc;
+    int x0, y0;
+    int gi0,gi1,gi2,gi3;
+    int ii, jj;
 
-    thread_local float s,t,u,v;
-    thread_local float Cx,Cy;
-    thread_local float Li1, Li2;
-    thread_local float tempx,tempy;
+    float s,t,u,v;
+    float Cx,Cy;
+    float Li1, Li2;
+    float tempx,tempy;
 
     std::initializer_list<float>::const_iterator it = coordinates.begin();
 
@@ -108,18 +108,18 @@ float Perlin::_2D(std::initializer_list<float> coordinates, float scale) const
 
 float Perlin::_3D(std::initializer_list<float> coordinates, float scale) const
 {
-    thread_local float xc, yc, zc;
-    thread_local int x0, y0, z0;
-    thread_local int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7;
-    thread_local int ii, jj, kk;
+    float xc, yc, zc;
+    int x0, y0, z0;
+    int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7;
+    int ii, jj, kk;
 
-    thread_local float Li1,Li2,Li3,Li4,Li5,Li6;
-    thread_local float s[2],t[2],u[2],v[2];
-    thread_local float Cx,Cy,Cz;
-    thread_local float nx,ny,nz;
+    float Li1,Li2,Li3,Li4,Li5,Li6;
+    float s[2],t[2],u[2],v[2];
+    float Cx,Cy,Cz;
+    float nx,ny,nz;
 
-    thread_local float tmp;
-    thread_local float tempx,tempy,tempz;
+    float tmp;
+    float tempx,tempy,tempz;
 
     std::initializer_list<float>::const_iterator it = coordinates.begin();
 
@@ -190,17 +190,17 @@ float Perlin::_3D(std::initializer_list<float> coordinates, float scale) const
 
 float Perlin::_4D(std::initializer_list<float> coordinates, float scale) const
 {
-    thread_local float xc,yc,zc,wc;
-    thread_local int x0,y0,z0,w0;
-    thread_local int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9,gi10,gi11,gi12,gi13,gi14,gi15;
-    thread_local int ii,jj,kk,ll;
+    float xc,yc,zc,wc;
+    int x0,y0,z0,w0;
+    int gi0,gi1,gi2,gi3,gi4,gi5,gi6,gi7,gi8,gi9,gi10,gi11,gi12,gi13,gi14,gi15;
+    int ii,jj,kk,ll;
 
-    thread_local float Li1,Li2,Li3,Li4,Li5,Li6,Li7,Li8,Li9,Li10,Li11,Li12,Li13,Li14;
-    thread_local float s[4],t[4],u[4],v[4];
-    thread_local float Cx,Cy,Cz,Cw;
+    float Li1,Li2,Li3,Li4,Li5,Li6,Li7,Li8,Li9,Li10,Li11,Li12,Li13,Li14;
+    float s[4],t[4],u[4],v[4];
+    float Cx,Cy,Cz,Cw;
 
-    thread_local float tmp;
-    thread_local float tempx,tempy,tempz,tempw;
+    float tmp;
+    float tempx,tempy,tempz,tempw;
 
     std::initializer_list<float>::const_iterator it = coordinates.begin();
 
