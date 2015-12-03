@@ -13,6 +13,7 @@ void generate_simplex_4dslice(cimg_library::CImg<unsigned char> & image);
 void generate_worley(cimg_library::CImg<unsigned char> & image,WorleyFunction worleyFunc);
 void generate_fbm(cimg_library::CImg<unsigned char> & image);
 void generate_hmf(cimg_library::CImg<unsigned char> & image);
-void benchmark_async();
+void benchmark_parallel();
+void benchmark_serial();
 
 #endif

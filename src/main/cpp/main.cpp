@@ -25,7 +25,10 @@ int main()
     //generate_hmf(output);
 
     // Example 5 - use std::async to parallelize densities computations
-    benchmark_async();
+    benchmark_parallel();
+
+    // Example 6 - to compare with 5
+    benchmark_serial();
 
     return 0;
 }
