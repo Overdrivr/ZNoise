@@ -19,10 +19,22 @@ int main()
     generate_worley(output,WorleyFunction_F1);
 
     // Example 3 - See scr/examples/cpp/example-fbm.cpp
-    generate_fbm(output);
+    // lacunarity must be > 1, and should be > 2 to avoid scaling artifacts
+    generate_fbm(output,0.2f,4.5f);
+    generate_fbm(output,0.2f,3.5f);
+    generate_fbm(output,0.2f,2.5f);
+
+    generate_fbm(output,0.5f,4.5f);
+    generate_fbm(output,0.5f,3.5f);
+    generate_fbm(output,0.5f,2.5f);
+
+    generate_fbm(output,0.8f,4.5f);
+    generate_fbm(output,0.8f,3.5f);
+    generate_fbm(output,0.8f,2.5f);
+
 
     // Example 4 - See scr/examples/cpp/example-fbm.cpp
     generate_hmf(output);
-    
+
     return 0;
 }
