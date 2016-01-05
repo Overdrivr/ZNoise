@@ -41,7 +41,7 @@ The following table details the implemented noises to date :
 [Simplex3D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex3d.bmp "Simplex 3d"
 [Simplex4D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/simplex4d.bmp "Simplex 4d"
 [Worley2DF1]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/worley2d.bmp "Worley 2d"
-[FBM2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm.bmp "FBM 2d"
+[FBM2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.8_l2.5.bmp "FBM 2d"
 [HMF2D]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal.bmp "HMF 2d"
 
 Noise     | 2-D                       | 3-D (2D slice)           | 4-D (2D slice)
@@ -84,11 +84,24 @@ Lacunarity controls the scale ratio between two successive layers.
 Hurst coefficient controls relates to the weight of each layer in the final blended image.
 
 #### Fractal Brownian Motion (FBM) - 5 octaves
-               |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
+
+[FBM2D_11]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.2_l2.5.bmp
+[FBM2D_12]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.5_l2.5.bmp
+[FBM2D_13]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.8_l2.5.bmp
+
+[FBM2D_21]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.2_l3.5.bmp
+[FBM2D_22]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.5_l3.5.bmp
+[FBM2D_23]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.8_l3.5.bmp
+
+[FBM2D_31]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.2_l4.5.bmp
+[FBM2D_32]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.5_l4.5.bmp
+[FBM2D_33]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.8_l4.5.bmp
+
+               |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 1.2f   |![FBM2D][FBM2D]           |_                         |_    
-hurst = 1.5f   |_                          |_                         |_  
-hurst = 1.8f   |_                          |_                         |_
+hurst = 0.2f   |![FBM2D_11][FBM2D]         |![FBM2D_21][FBM2D]        |![FBM2D_31][FBM2D]
+hurst = 0.5f   |![FBM2D_12][FBM2D]         |![FBM2D_22][FBM2D]        |![FBM2D_32][FBM2D]
+hurst = 0.8f   |![FBM2D_13][FBM2D]         |![FBM2D_23][FBM2D]        |![FBM2D_33][FBM2D]
 
 
 #### Hybrid Multi Fractal - 5 octaves
