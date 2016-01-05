@@ -99,9 +99,9 @@ Hurst coefficient controls relates to the weight of each layer in the final blen
 
                |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 0.2f   |![FBM2D_11][FBM2D]         |![FBM2D_21][FBM2D]        |![FBM2D_31][FBM2D]
-hurst = 0.5f   |![FBM2D_12][FBM2D]         |![FBM2D_22][FBM2D]        |![FBM2D_32][FBM2D]
-hurst = 0.8f   |![FBM2D_13][FBM2D]         |![FBM2D_23][FBM2D]        |![FBM2D_33][FBM2D]
+hurst = 0.2f   |![FBM2D_11][FBM2D_11]      |![FBM2D_21][FBM2D_21]     |![FBM2D_31][FBM2D_31]
+hurst = 0.5f   |![FBM2D_12][FBM2D_12]      |![FBM2D_22][FBM2D_22]     |![FBM2D_32][FBM2D_32]
+hurst = 0.8f   |![FBM2D_13][FBM2D_13]      |![FBM2D_23][FBM2D_23]     |![FBM2D_33][FBM2D_33]
 
 
 #### Hybrid Multi Fractal - 5 octaves
