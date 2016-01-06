@@ -22,13 +22,16 @@ int main()
     // lacunarity must be > 1, and should be > 2 to avoid scaling artifacts
     float hurst[] = {0.2f, 0.5f, 0.8f};
     float lacunarity[] = {2.5f, 3.5f, 4.5f};
+    float baseScale = 0.005f;
 
     for(auto& h : hurst)
       for(auto& l : lacunarity)
-        generate_fbm(output,h,l);
+        generate_fbm(output, h, l, baseScale);
 
     // Example 4 - See scr/examples/cpp/example-fbm.cpp
-    generate_hmf(output);
+    for(auto& h : hurst)
+      for(auto& l : lacunarity)
+        generate_hmf(output, h, l, baseScale);
 
     return 0;
 }
