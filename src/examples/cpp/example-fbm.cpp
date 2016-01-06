@@ -4,7 +4,7 @@
 #include "FBM.hpp"
 #include "include_all.hpp"
 
-void generate_fbm(cimg_library::CImg<unsigned char> & image, float hurst, float lacunarity)
+void generate_fbm(cimg_library::CImg<unsigned char> & image, float hurst, float lacunarity, float baseScale)
 {
     /* Use simplex as source */
     Simplex simplex;
@@ -16,7 +16,7 @@ void generate_fbm(cimg_library::CImg<unsigned char> & image, float hurst, float 
     for(int x = 0 ; x < image.width() ; x++)
         for(int y = 0 ; y < image.height() ; y++)
         {
-            float value =  fbm.Get({x , y},0.01f);
+            float value =  fbm.Get({x , y}, baseScale);
 
             unsigned int greyscale = static_cast<unsigned int>((value + 1.f) / 2.f * 255.f);
 
