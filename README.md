@@ -56,7 +56,7 @@ Square    |_                          |_                         |_
 
 ## Mixers
 ### Usage
-```c
+```c++
 // Use Perlin as mixer source
 Perlin perlin;
 // Mixer
@@ -99,17 +99,29 @@ Hurst coefficient controls relates to the weight of each layer in the final blen
 
                |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 0.2f   |![FBM2D_11][FBM2D_11]      |![FBM2D_21][FBM2D_21]     |![FBM2D_31][FBM2D_31]
-hurst = 0.5f   |![FBM2D_12][FBM2D_12]      |![FBM2D_22][FBM2D_22]     |![FBM2D_32][FBM2D_32]
-hurst = 0.8f   |![FBM2D_13][FBM2D_13]      |![FBM2D_23][FBM2D_23]     |![FBM2D_33][FBM2D_33]
+hurst = 0.2f   |![FBM2D][FBM2D_11]         |![FBM2D][FBM2D_21]        |![FBM2D][FBM2D_31]
+hurst = 0.5f   |![FBM2D][FBM2D_12]         |![FBM2D][FBM2D_22]        |![FBM2D][FBM2D_32]
+hurst = 0.8f   |![FBM2D][FBM2D_13]         |![FBM2D][FBM2D_23]        |![FBM2D][FBM2D_33]
+
+[HMF2D_11]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.2_l2.5.bmp
+[HMF2D_12]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.5_l2.5.bmp
+[HMF2D_13]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.8_l2.5.bmp
+
+[HMF2D_21]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.2_l3.5.bmp
+[HMF2D_22]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.5_l3.5.bmp
+[HMF2D_23]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.8_l3.5.bmp
+
+[HMF2D_31]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.2_l4.5.bmp
+[HMF2D_32]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.5_l4.5.bmp
+[HMF2D_33]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/hybridmultifractal_h0.8_l4.5.bmp
 
 
 #### Hybrid Multi Fractal - 5 octaves
-               |lacunarity = 5.f           |lacunarity = 1.f          |lacunarity = 0.2f
+               |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
-hurst = 1.2f   |![HMF2D][HMF2D]           |_                         |_    
-hurst = 1.5f   |_                          |_                         |_  
-hurst = 1.8f   |_                          |_                         |_
+hurst = 0.2f   |![HMF2D][HMF2D_11]         |![HMF2D][HMF2D_21]        |![HMF2D][HMF2D_31]     
+hurst = 0.5f   |![HMF2D][HMF2D_12]         |![HMF2D][HMF2D_22]        |![HMF2D][HMF2D_32]
+hurst = 0.8f   |![HMF2D][HMF2D_13]         |![HMF2D][HMF2D_23]        |![HMF2D][HMF2D_33]
 
 ## Build the library
 
