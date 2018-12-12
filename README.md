@@ -97,7 +97,7 @@ Hurst coefficient controls relates to the weight of each layer in the final blen
 [FBM2D_32]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.5_l4.5.bmp
 [FBM2D_33]: https://github.com/Overdrivr/ZNoise/blob/master/example-images/fbm_h0.8_l4.5.bmp
 
-               |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
+FBM            |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
 hurst = 0.2f   |![FBM2D][FBM2D_11]         |![FBM2D][FBM2D_21]        |![FBM2D][FBM2D_31]
 hurst = 0.5f   |![FBM2D][FBM2D_12]         |![FBM2D][FBM2D_22]        |![FBM2D][FBM2D_32]
@@ -117,7 +117,7 @@ hurst = 0.8f   |![FBM2D][FBM2D_13]         |![FBM2D][FBM2D_23]        |![FBM2D][
 
 
 #### Hybrid Multi Fractal - 5 octaves
-               |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
+HMF            |lacunarity = 2.5f          |lacunarity = 3.5f         |lacunarity = 4.5f
 ---------------|---------------------------|--------------------------|-----------------------
 hurst = 0.2f   |![HMF2D][HMF2D_11]         |![HMF2D][HMF2D_21]        |![HMF2D][HMF2D_31]     
 hurst = 0.5f   |![HMF2D][HMF2D_12]         |![HMF2D][HMF2D_22]        |![HMF2D][HMF2D_32]
